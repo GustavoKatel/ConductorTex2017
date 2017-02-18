@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+        <title>.: Conductor Hackaton :.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<script type="application/x-javascript"> addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<meta charset utf="8">
+    <!--font-awsome-css-->
+		<link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
+		<!--bootstrap-->
+			<link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<!--custom css-->
+			<link href="css/style.css" rel="stylesheet" type="text/css"/>
+			<link rel="stylesheet" href="css/percircle.css">
+        <!--component-css-->
+
+        <!-- script -->
+			<script src="components/jquery/dist/jquery.min.js"></script>
+			<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+			<script src="js/Chart.js"></script>
+      <script src="js/bigSlide.js"></script>
+      <script>
+				$(document).ready(function() {
+				$('.menu-link').bigSlide();
+				});
+      </script>
+      <!--script-->
+    </head>
+
+<body ng-app="dpay">
+
+	<div class="body-back">
+		<div class="masthead pdng-stn1">
+			<div class="phone-box wrap push">
+
+ 				<div class="menu-notify">
+					<div class="profile-left">
+						<a href="#menu" class="menu-link"><i class="fa fa-chevron-left"></i></a>
+					</div>
+					<div class="Profile-mid">
+						<h5 class="pro-link">Profile</h5>
+					</div>
+					<div class="Profile-right">
+						<div id="dd1" class="wrapper-dropdown-1" tabindex="1"><i class="fa fa-bars"></i>
+							<ul class="dropdown">
+								<li><a href="#">Formas de pagamento</a></li>
+								<li><a href="#">Lista de amigos</a></li>
+								<li><a href="#">Configurações</a></li>
+								<li><a href="#">Log Out</a></li>
+							</ul>
+								<script type="text/javascript">
+															function DropDown(el) {
+																this.dd = el;
+																this.initEvents();
+															}
+															DropDown.prototype = {
+																initEvents : function() {
+																	var obj = this;
+
+																	obj.dd.on('click', function(event){
+																		$(this).toggleClass('active');
+																		event.stopPropagation();
+																	});
+																}
+															}
+															$(function() {
+
+																var dd = new DropDown( $('#dd1') );
+
+																$(document).click(function() {
+																	// all dropdowns
+																	$('.wrapper-dropdown-1').removeClass('active');
+																});
+
+															});
+								</script>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+				<div id="ngView" ng-view></div>
+
+			</div>
+		</div>
+	</div>
+
+
+<script src="components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+<script src="components/angular/angular.min.js"></script>
+<script src="components/angular-route/angular-route.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/home.controller.js"></script>
+<script src="js/controllers/receber.controller.js"></script>
+<script src="js/controllers/dadosPagamento.controller.js"></script>
+</body>
+</html>
