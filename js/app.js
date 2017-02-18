@@ -1,5 +1,5 @@
 
-angular.module('dpay', ['ngRoute'])
+angular.module('dpay', ['ngRoute', 'firebase'])
 
 
 .config(function($routeProvider, $locationProvider) {
@@ -7,6 +7,18 @@ angular.module('dpay', ['ngRoute'])
   .when('/', {
     templateUrl: 'partials/home.html',
     controller: 'HomeCtrl'
+  })
+  .when('/login', {
+    templateUrl: 'partials/login.html',
+    controller: 'LoginCtrl'
+  })
+  .when('/criarConta', {
+    templateUrl: 'partials/criarConta.html',
+    controller: 'CriarContaCtrl'
+  })
+  .when('/pagar', {
+    templateUrl: 'partials/pagar.html',
+    controller: 'PagarCtrl'
   })
   .when('/receber', {
     templateUrl: 'partials/receber.html',
@@ -16,6 +28,14 @@ angular.module('dpay', ['ngRoute'])
     templateUrl: 'partials/dadosPagamento.html',
     controller: 'DadosPagamentoCtrl'
   })
-  .otherwise('/');
+  .when('/formaPagamento', {
+    templateUrl: 'partials/formaPagamento.html',
+    controller: 'FormaPagamentoCtrl'
+  })
+  .when('/confirmacaoPagamento', {
+    templateUrl: 'partials/confirmacaoPagamento.html',
+    controller: 'ConfirmacaoPagamentoCtrl'
+  })
+  .otherwise('/login');
 
 });
