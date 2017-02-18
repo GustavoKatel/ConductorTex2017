@@ -13,6 +13,8 @@
 			<link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 		<!--custom css-->
 			<link href="css/style.css" rel="stylesheet" type="text/css"/>
+			<link href="css/login.css" rel="stylesheet" type="text/css"/>
+			<link href="css/criarConta.css" rel="stylesheet" type="text/css"/>
 			<link rel="stylesheet" href="css/percircle.css">
         <!--component-css-->
 
@@ -35,19 +37,16 @@
 		<div class="masthead pdng-stn1">
 			<div class="phone-box wrap push">
 
- 				<div class="menu-notify">
-					<div class="profile-left">
-						<a href="#menu" class="menu-link"><i class="fa fa-chevron-left"></i></a>
-					</div>
+				<div class="menu-notify">
 					<div class="Profile-mid">
 						<h5 class="pro-link">Profile</h5>
 					</div>
 					<div class="Profile-right">
 						<div id="dd1" class="wrapper-dropdown-1" tabindex="1"><i class="fa fa-bars"></i>
 							<ul class="dropdown">
-								<li><a href="#">Formas de pagamento</a></li>
-								<li><a href="#">Lista de amigos</a></li>
-								<li><a href="#">Configurações</a></li>
+								<li><a href="#">Edit Profile </a></li>
+								<li><a href="#">Help</a></li>
+								<li><a href="#">Activity log</a></li>
 								<li><a href="#">Log Out</a></li>
 							</ul>
 								<script type="text/javascript">
@@ -91,10 +90,31 @@
 <script src="components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
 <script src="components/angular/angular.min.js"></script>
 <script src="components/angular-route/angular-route.min.js"></script>
+
+<!-- Firebase -->
+<script src="components/firebase/firebase.js"></script>
+<script src="components/angularfire/dist/angularfire.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBvobfHNopjuGG6wzuYDM5xkSru21n66N8",
+    authDomain: "desblocpay.firebaseapp.com",
+    databaseURL: "https://desblocpay.firebaseio.com",
+    storageBucket: "desblocpay.appspot.com",
+    messagingSenderId: "61097825979"
+  };
+  firebase.initializeApp(config);
+</script>
+
 <script src="js/scripts.js"></script>
 <script src="js/app.js"></script>
+<script src="js/controllers/login.controller.js"></script>
+<script src="js/controllers/criarConta.controller.js"></script>
 <script src="js/controllers/home.controller.js"></script>
 <script src="js/controllers/receber.controller.js"></script>
 <script src="js/controllers/dadosPagamento.controller.js"></script>
+<script src="js/controllers/formaPagamento.controller.js"></script>
+<script src="js/controllers/confirmacaoPagamento.controller.js"></script>
+<script src="js/controllers/pagar.controller.js"></script>
 </body>
 </html>
