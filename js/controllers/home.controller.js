@@ -15,7 +15,7 @@ angular.module('dpay')
   $scope.displayName = firebaseUser.displayName;
   $scope.photoURL = firebaseUser.photoURL;
 
-  var ref = firebase.database().ref();
+  var ref = firebase.database().ref().child('users').child(firebaseUser.uid);
   var obj = $firebaseObject(ref);
 
   // to take an action after the data loads, use the $loaded() promise
@@ -27,6 +27,7 @@ angular.module('dpay')
     //   metodoPagamento: 'VISA',
     //   formatoPagamento: 'Compartilhado',
     // });
+    $log.log(obj);
   });
 
   // To make the data available in the DOM, assign it to $scope
