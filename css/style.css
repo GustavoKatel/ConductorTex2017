@@ -474,7 +474,7 @@ h5.pro-link {
 	border-bottom:1px solid #ccc;
 }
 .follow-left {
-    padding: 20px 0;
+    padding: 10px 0;
 }
 .follow-left:nth-child(2){
 	border-left:1px solid #ccc;
@@ -1233,10 +1233,6 @@ input[type="file"] {
 	
 }
 @media (max-width: 736px){
-	.follow-left {
-		float: left;
-		width: 33.333%;
-	}
 	.goal-left {
 		float: left;
 		width: 50%;
