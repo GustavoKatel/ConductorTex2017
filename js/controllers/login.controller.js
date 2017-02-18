@@ -1,13 +1,12 @@
 
 angular.module('dpay')
 
-.controller('LoginCtrl', function($scope, $window, $firebaseAuth, $log) {
+.controller('LoginCtrl', function($scope, $window, $location, $firebaseAuth, $log) {
 
-  // TODO: localstorage
   var firebaseUser = $firebaseAuth().$getAuth();
 
   if (firebaseUser) {
-    $window.location.href = '#/home';
+    $location.path('/home');
   } else {
     $log.log('not logged in');
   }
@@ -20,7 +19,7 @@ angular.module('dpay')
     provider.addScope("user_friends");
 
     auth.$signInWithPopup(provider).then(function(firebaseUser) {
-      $window.location.href = '#/home';
+      $location.path('/home');
     }).catch(function(error) {
       console.log("Authentication failed:", error);
     });
