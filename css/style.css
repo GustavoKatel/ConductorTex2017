@@ -4,12 +4,13 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol, li{margin: 0; padding: 0;}
 p {margin: 0;padding: 0;}
 body{
-	background:#0d1635;
+	background:#0c243a;
 	font-family: 'Open Sans', sans-serif;
 	margin:0;
 	background-size:cover;
@@ -66,7 +67,7 @@ text-decoration:underline;
 }
 /*--status-bar--*/
 .body-back{
-    background: #f7f7f7;
+    background: #0c243a;
 	font-family: 'Open Sans', sans-serif;
     margin: 0;
 
@@ -253,7 +254,7 @@ h5.pro-link {
 }
 .menu-notify {
     padding: 6px 0;
-    background: #b377d9 !important;
+    background: #194974 !important;
 }
 
 .panel {
@@ -397,13 +398,13 @@ h5.pro-link {
     -o-border-radius: 50%;
 }
 .details-grid {
-		background-color: #b377d9;
-    /*background: url(../images/pic2.jpg) no-repeat 0px 0px;*/
-    /*background-size: cover;
-		-webkit-background-size: cover;
-	 -moz-background-size: cover;
+	/* background-color: #b377d9; */
+    background: url(../images/back.jpg) no-repeat 0px 0px;
+    background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
     -ms-background-size: cover;
-    -o-background-size: cover;*/
+    -o-background-size: cover;
 }
 .details-shade{
     padding: 75px 0 0;
@@ -482,7 +483,7 @@ h5.pro-link {
 	border-right:1px solid #ccc;
 }
 .follow-left h3 {
-    color: #B377D9;
+    color: #194974;
     margin-bottom: 15px;
     font-size: 22px;
     font-weight: 500;
@@ -495,7 +496,7 @@ h5.pro-link {
 /*-- //follow --*/
 /*-- goals --*/
 .goals {
-    background:#402245;
+    background:#0c243a;
 	border-bottom:1px solid #000;
 }
 .phn-status-bar2{
@@ -516,7 +517,7 @@ padding:8px 0;
     width: 64%;
 }
 .goal-info h4 {
-    color: #B377D9;
+    color: #194974;
     font-size: 19px;
     margin: 6px 0 12px 0px;
     font-weight: 500;
@@ -1642,4 +1643,20 @@ a.signup-btn:focus, a.signup-btn:hover{
 	.menu-notify1, .menu-notify2 ,.menu-notify{
     padding: 15px 0;
 }
+}
+
+#select:active {
+    background: #194974;
+}
+
+#select:visited {
+    background: #194974;
+}
+
+#select:hover {
+    background: #194974;
+}
+
+#select:link {
+    background: #194974;
 }
