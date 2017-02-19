@@ -66,8 +66,8 @@
 			        </div>
 
 					<center>
-						<!-- <img src="images/qrcode.png" alt="" style="width: 90%; margin-top: 20px; height:325px;"> -->
-						<qrcode version="2" error-correction-level="M" size="200" data="{{ qrcodeData }}" download></qrcode>
+						<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ qrcodeData || 'a' }}" alt="" style="width: 90%; margin-top: 20px; height:325px;">
+						<!-- <qrcode version="2" error-correction-level="M" size="200" data="{{ qrcodeData }}" download></qrcode> -->
 					</center>
 
 			        <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 100%; background: #194974; color: white; border: none; font-size: 20px; margin-top: 30px;">Fechar</button>
