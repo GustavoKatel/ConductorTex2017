@@ -1,5 +1,5 @@
 
-angular.module('dpay', ['ngRoute', 'firebase', 'facebook', 'monospaced.qrcode'])
+angular.module('dpay', ['ngRoute', 'firebase', 'facebook', 'monospaced.qrcode', 'naif.base64'])
 
 
 .config(function($routeProvider, $locationProvider) {

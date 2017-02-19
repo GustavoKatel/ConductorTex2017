@@ -57,7 +57,7 @@ angular.module('dpay')
 
   $scope.open = function(obj) {
 
-    if(obj && obj.status && obj.status === false) {
+    if(obj && 'status' in obj && obj.status === false) {
       $location.path('/formaPagamento/'+obj.id);
       return;
     }

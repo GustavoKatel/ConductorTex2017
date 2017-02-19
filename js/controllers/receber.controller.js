@@ -12,18 +12,33 @@ angular.module('dpay')
     return;
   }
 
+  var ref = firebase.database().ref();
+
   $scope.valor = '';
   $scope.descricao = '';
 
-  $scope.getData = function() {
+  $scope.qrcodeData = '';
+
+  $scope.gerarCodigo = function() {
 
     var obj = {
+      data: new Date().toISOString(),
       destId: $rootScope.user.uid,
-      valor: $scope.valor,
-      descricao: $scope.descricao
+      valorTotal: $scope.valor,
+      descricao: $scope.descricao,
+      transactionId: (new Date()).getTime()
     };
-    // $log.log(obj);
-    return btoa('teste'); // btoa(JSON.stringify(obj));
+
+    var transactionObj = $firebaseObject(ref.child('transactions').child(obj.transactionId));
+
+    transactionObj.$loaded().then(function(transactionObj) {
+      for(var key in obj) {
+        transactionObj[key] = obj[key];
+        transactionObj.$save().then(function() {
+          $scope.qrcodeData = obj.transactionId;
+        });
+      }
+    });
 
   };
 
