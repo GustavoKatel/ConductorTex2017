@@ -155,7 +155,7 @@ angular.module('dpay')
           paymentObj.origId = oid;
           paymentObj.status = false;
           paymentObj.tipo = 'compartilhada';
-          paymentObj.transactionId = $scope.transaction.id;
+          paymentObj.transactionId = $scope.transaction.transactionId;
           paymentObj.valorParcial = friend.valor;
           paymentObj.valorTotal = $scope.transaction.valorTotal;
           paymentObj.id = pid;
@@ -178,7 +178,7 @@ angular.module('dpay')
       paymentObj.origId = $rootScope.user.uid;
       paymentObj.status = false;
       paymentObj.tipo = 'compartilhada';
-      paymentObj.transactionId = $scope.transaction.id;
+      paymentObj.transactionId = $scope.transaction.transactionId;
       paymentObj.valorParcial = $scope.totalRestante();
       paymentObj.valorTotal = $scope.transaction.valorTotal;
       paymentObj.id = pid;
@@ -203,7 +203,7 @@ angular.module('dpay')
       paymentObj.origId = $rootScope.user.uid;
       paymentObj.status = false;
       paymentObj.tipo = 'individual';
-      paymentObj.transactionId = $scope.transaction.id;
+      paymentObj.transactionId = $scope.transaction.transactionId;
       paymentObj.valorParcial = $scope.transaction.valorTotal;
       paymentObj.valorTotal = $scope.transaction.valorTotal;
       paymentObj.id = pid;
