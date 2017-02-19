@@ -17,21 +17,21 @@
 
 <div class="follow" style="padding-bottom: 20px; border: none;">
 	<div class="" style="width: 100%; height: 50px; background: #194974; border: none; text-align: center; color: white; padding-top: 14px; margin-bottom: 10px;"><h4><i class="fa fa-clock-o"></i> Histórico de Transações</h4></div>
-	<div ng-repeat="payment in payments">
+	<div ng-repeat="obj in getList()" ng-click="open(obj);">
 		<div class="col-sm-12 follow-left text-center">
-			<h3>{{ payment.data }}</h3>
-			<p>Valor: {{ payment.valor }}</p>
-			<p>Forma de Pagamento: {{ payment.metodoPagamento }}</p>
-			<p>Formato da Compra: {{ payment.formatoPagamento }}</p>
-			<!-- <p style="font-weight: bold; color: #d35400; border: solid 2px #d35400; border-radius: 25px; width: 250px; display: block; margin-left: auto; margin-right: auto;"><i class="fa fa-arrow-right"></i> Pagamento Enviado</p> -->
-			<p style="font-weight: bold; color: #27ae60; border: solid 2px #27ae60; border-radius: 25px; width: 250px; display: block; margin-left: auto; margin-right: auto;"><i class="fa fa-arrow-left""></i> Pagamento Recebido</p>
+			<h3>{{ obj.data }}</h3>
+			<h4>Valor: R$ {{ obj.valorTotal }}</h4>
+			<p ng-show="isEfetuado(obj)">Forma de Pagamento: {{ obj.forma }}</p>
+			<p ng-show="isEfetuado(obj)">Formato da Compra: {{ obj.tipo }}</p>
+			<p style="font-weight: bold; color: #d35400; border: solid 2px #d35400; border-radius: 25px; width: 250px; display: block; margin-left: auto; margin-right: auto;" ng-show="isEfetuado(obj)"><i class="fa fa-arrow-right"></i> Pagamento Enviado</p>
+			<p style="font-weight: bold; color: #27ae60; border: solid 2px #27ae60; border-radius: 25px; width: 250px; display: block; margin-left: auto; margin-right: auto;" ng-show="isRecebido(obj)"><i class="fa fa-arrow-left"></i> Pagamento Recebido</p>
 		</div>
 		<hr>
 	</div>
 
-	<div ng-show="payments==null || payments.length==0">
+	<div ng-show="getList().length == 0">
 		<div class="col-sm-12 follow-left text-center">
-			<h3>Sem compras ainda!</h3>
+			<h3>Sem histórico ainda!</h3>
 		</div>
 		<hr>
 	</div>

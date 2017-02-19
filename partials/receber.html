@@ -10,11 +10,11 @@
 			</div>
 			<div class="goal-info">
 				<h4>Valor da Transação</h4>
-				<input type="text" placeholder="40,00" style="width: 50%; height:40px; border-radius: 25px; text-align: center;">
+				<input type="text" placeholder="R$ 40,00" style="width: 50%; height:40px; border-radius: 25px; text-align: center;" ng-model="valor">
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		
+
 		<div class="col-sm-6 goal-left">
 			<div class="goal-img">
 				<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
@@ -23,7 +23,7 @@
 			</div>
 			<div class="goal-info">
 				<h4>Descrição da Transação</h4>
-				<textarea name="descricao" id="descricao" cols="24" rows="3" style="border-radius: 25px; padding: 15px;"></textarea>
+				<textarea name="descricao" id="descricao" cols="24" rows="3" style="border-radius: 25px; padding: 15px;" ng-model="descricao" maxlength="140"></textarea>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -43,15 +43,15 @@
 					<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
 						<a href="#"><i class="fa fa-qrcode fa-3x" style="color: white; margin-top: 15px; margin-left: 25px;"></i></a></div>
 					</div>
-					<button data-toggle="modal" data-target="#myModal" style="background: none; border: none; outline: 0;">
+					<button data-toggle="modal" data-target="#myModal" style="background: none; border: none; outline: 0;" ng-click="gerarCodigo();">
 						<div class="goal-info" style="width: 130px;">
 							<h2 style="color: white; margin-top: 20px;">Gerar QR</h2>
 						</div>
-					</button> 	
+					</button>
 					<div class="clearfix"></div>
 				</div>
 			</div>
-			
+
 			<div class="clearfix"></div>
 
 			<!-- Modal -->
@@ -64,8 +64,11 @@
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          <h4 class="modal-title" style="color: #194974; text-align: center;"><i class="fa fa-qrcode"></i> QRCode para Compartilhar</h4>
 			        </div>
-	
-					<center><img src="images/qrcode.png" alt="" style="width: 90%; margin-top: 20px; height:325px;"></center>		        
+
+					<center>
+						<!-- <img src="images/qrcode.png" alt="" style="width: 90%; margin-top: 20px; height:325px;"> -->
+						<qrcode version="2" error-correction-level="M" size="200" data="{{ getData() }}" download></qrcode>
+					</center>
 
 			        <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 100%; background: #194974; color: white; border: none; font-size: 20px; margin-top: 30px;">Fechar</button>
 

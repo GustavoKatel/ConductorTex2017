@@ -84,4 +84,8 @@ angular.module('dpay')
 
   };
 
+  $scope.confirmar = function() {
+    $location.path('/home');
+  };
+
 });
