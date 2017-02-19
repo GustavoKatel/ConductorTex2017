@@ -17,7 +17,7 @@ angular.module('dpay')
 
     destObj.$loaded().then(function() {
 
-      facebookService.getFriendList(destObj.fid, destObj.accessToken).then(function(response) {
+      facebookService.getFriendList('me', destObj.accessToken).then(function(response) {
         var friends = response.data;
         for(var i in friends) {
           var obj = {
