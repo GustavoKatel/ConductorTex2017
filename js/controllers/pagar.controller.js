@@ -1,7 +1,7 @@
 
 angular.module('dpay')
 
-.controller('PagarCtrl', function($rootScope, $scope, $window, $location, $log) {
+.controller('PagarCtrl', function($rootScope, $scope, $window, $location, $log, $route) {
 
   if(!$rootScope.user) {
     $location.path('/login');
@@ -9,8 +9,13 @@ angular.module('dpay')
   }
 
   $window.qrcode.callback = function(decodedData) {
-    // $log.log(decodedData);
-    $location.path('/dadosPagamento/'+decodedData);
+    $log.log(decodedData);
+    if(decodedData != undefined) {
+      $route.reload();
+      $location.path('/dadosPagamento/'+decodedData);
+    } else {
+      $window.alert('Não foi possível escanear o QRCode');
+    }
   };
 
   $scope.started = function() {
