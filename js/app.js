@@ -1,8 +1,9 @@
 
-angular.module('dpay', ['ngRoute', 'firebase'])
+angular.module('dpay', ['ngRoute', 'firebase', 'facebook'])
 
 
 .config(function($routeProvider, $locationProvider) {
+
   $routeProvider
   .when('/', {
     templateUrl: 'partials/home.html',
@@ -28,7 +29,7 @@ angular.module('dpay', ['ngRoute', 'firebase'])
     templateUrl: 'partials/receber.html',
     controller: 'ReceberCtrl'
   })
-  .when('/dadosPagamento', {
+  .when('/dadosPagamento/:transactionId', {
     templateUrl: 'partials/dadosPagamento.html',
     controller: 'DadosPagamentoCtrl'
   })
@@ -41,5 +42,19 @@ angular.module('dpay', ['ngRoute', 'firebase'])
     controller: 'ConfirmacaoPagamentoCtrl'
   })
   .otherwise('/login');
+
+})
+
+.run(function($window) {
+
+  $window.fbAsyncInit = function() {
+    FB.init({
+      appId: '417738848566321',
+      status: true,
+      cookie: true,
+      xfbml: true,
+      version: 'v2.4'
+    });
+  };
 
 });

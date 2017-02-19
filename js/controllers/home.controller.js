@@ -5,7 +5,7 @@ angular.module('dpay')
 
   var firebaseUser = $firebaseAuth().$getAuth();
 
-  $log.log(firebaseUser);
+  // $log.log(firebaseUser);
 
   if(!firebaseUser) {
     $location.path('/login');
@@ -15,18 +15,19 @@ angular.module('dpay')
   $scope.displayName = firebaseUser.displayName;
   $scope.photoURL = firebaseUser.photoURL;
 
-  var ref = firebase.database().ref().child('users').child(firebaseUser.uid);
-  var obj = $firebaseObject(ref);
+  var ref = firebase.database().ref();
+  var obj = $firebaseObject(ref.child('users').child(firebaseUser.uid));
 
-  // to take an action after the data loads, use the $loaded() promise
+  var paymentsObj = $firebaseObject(ref.child('payments').orderByChild('origId').equalTo(firebaseUser.uid));
+
   obj.$loaded().then(function() {
-    
+
+  });
+  paymentsObj.$loaded().then(function() {
+
   });
 
-  // To make the data available in the DOM, assign it to $scope
-  $scope.data = obj;
-
-  // For three-way data bindings, bind it to the scope instead
   obj.$bindTo($scope, "data");
+  paymentsObj.$bindTo($scope, "payments");
 
 });
