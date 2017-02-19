@@ -20,14 +20,7 @@ angular.module('dpay')
 
   // to take an action after the data loads, use the $loaded() promise
   obj.$loaded().then(function() {
-    // obj.compras = [];
-    // obj.compras.push({
-    //   data: new Date(),
-    //   valor: 50.30,
-    //   metodoPagamento: 'VISA',
-    //   formatoPagamento: 'Compartilhado',
-    // });
-    $log.log(obj);
+    
   });
 
   // To make the data available in the DOM, assign it to $scope
