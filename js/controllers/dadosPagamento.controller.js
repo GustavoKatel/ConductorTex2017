@@ -1,9 +1,14 @@
 
 angular.module('dpay')
 
-.controller('DadosPagamentoCtrl', function($scope, $routeParams, $firebaseObject, $log, facebookService) {
+.controller('DadosPagamentoCtrl', function($rootScope, $scope, $routeParams, $firebaseAuth, $firebaseObject, $log, $location, facebookService) {
 
   $scope.transactionId = $routeParams.transactionId;
+
+  if(!$rootScope.user) {
+    $location.path('/login');
+    return;
+  }
 
   var ref = firebase.database().ref();
 
@@ -17,7 +22,7 @@ angular.module('dpay')
 
     destObj.$loaded().then(function() {
 
-      facebookService.getFriendList('me', destObj.accessToken).then(function(response) {
+      facebookService.getFriendList('me', $rootScope.user.accessToken).then(function(response) {
         var friends = response.data;
         for(var i in friends) {
           var obj = {

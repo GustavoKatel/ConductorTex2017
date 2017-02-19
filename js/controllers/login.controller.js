@@ -1,7 +1,7 @@
 
 angular.module('dpay')
 
-.controller('LoginCtrl', function($scope, $window, $location, $firebaseAuth, $firebaseObject, $log) {
+.controller('LoginCtrl', function($rootScope, $scope, $window, $location, $firebaseAuth, $firebaseObject, $log) {
 
   var firebaseUser = $firebaseAuth().$getAuth();
 
@@ -32,6 +32,7 @@ angular.module('dpay')
         $scope.obj.accessToken = firebaseUser.credential.accessToken;
         $location.path('/home');
       });
+      $rootScope.user = obj;
 
     }).catch(function(error) {
       console.log("Authentication failed:", error);
