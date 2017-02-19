@@ -24,7 +24,7 @@ angular.module('dpay')
 
       facebookService.getFriendList('me', $rootScope.user.accessToken).then(function(response) {
         var friends = response.data;
-        for(var i in friends) {
+        for(var i=0;i<friends.length;i++) {
           var obj = {
             fid: friends[i].id,
             valor: 0.0,
@@ -60,7 +60,7 @@ angular.module('dpay')
 
   $scope.totalRestante = function() {
     var acumulado = 0;
-    for(var i in $scope.selectedFriends) {
+    for(var i=0;i<$scope.selectedFriends.length;i++) {
       acumulado += $scope.selectedFriends[i].valor;
     }
 
@@ -75,7 +75,7 @@ angular.module('dpay')
 
   $scope.valorSugerido = function() {
     var acumulado = 0;
-    for(var i in $scope.selectedFriends) {
+    for(var i=0;i<$scope.selectedFriends.length;i++) {
       acumulado += $scope.selectedFriends[i].valor;
     }
 
@@ -92,14 +92,14 @@ angular.module('dpay')
     var list = [];
 
     var add = true;
-    for(var i in $scope.friendList) {
+    for(var i=0;i<$scope.friendList.length;i++) {
 
       if(!($scope.busca === '') && !$scope.friendList[i].displayName.toLowerCase().startsWith($scope.busca.toLowerCase())) {
         add = false;
         break;
       }
 
-      for(var j in $scope.selectedFriends) {
+      for(var j=0;j<$scope.selectedFriends.length;j++) {
         if($scope.friendList[i].fid == $scope.selectedFriends[j].fid) {
           add = false;
           break;
@@ -133,7 +133,7 @@ angular.module('dpay')
 
   $scope.confirmarCompartilhada = function() {
 
-    for(var i in $scope.selectedFriends) {
+    for(var i=0;i<$scope.selectedFriends.length;i++) {
       var friend = $scope.selectedFriends[i];
 
       var userObj = ref.child('users').orderByChild('fid').equalTo(friend.fid);

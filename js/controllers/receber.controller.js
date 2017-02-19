@@ -24,7 +24,7 @@ angular.module('dpay')
     var obj = {
       data: new Date().toISOString(),
       destId: $rootScope.user.uid,
-      valorTotal: $scope.valor,
+      valorTotal: parseFloat($scope.valor),
       descricao: $scope.descricao,
       transactionId: (new Date()).getTime()
     };
