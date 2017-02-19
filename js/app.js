@@ -33,11 +33,11 @@ angular.module('dpay', ['ngRoute', 'firebase', 'facebook'])
     templateUrl: 'partials/dadosPagamento.html',
     controller: 'DadosPagamentoCtrl'
   })
-  .when('/formaPagamento', {
+  .when('/formaPagamento/:paymentId', {
     templateUrl: 'partials/formaPagamento.html',
     controller: 'FormaPagamentoCtrl'
   })
-  .when('/confirmacaoPagamento', {
+  .when('/confirmacaoPagamento/:transactionId', {
     templateUrl: 'partials/confirmacaoPagamento.html',
     controller: 'ConfirmacaoPagamentoCtrl'
   })

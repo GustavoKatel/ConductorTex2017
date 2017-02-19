@@ -1645,18 +1645,18 @@ a.signup-btn:focus, a.signup-btn:hover{
 }
 }
 
-#select:active {
+.formaPagamentoActive {
     background: #194974;
 }
 
-#select:visited {
-    background: #194974;
+.aguardandoPagamento {
+	color: #d35400;
+	text-indent: 0;
+	margin-top:-15px;
 }
 
-#select:hover {
-    background: #194974;
-}
-
-#select:link {
-    background: #194974;
+.pagamentoConfirmado {
+	color: #27AE60;
+	text-indent: 0;
+	margin-top:-15px;
 }

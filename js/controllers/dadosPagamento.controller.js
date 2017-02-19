@@ -131,7 +131,7 @@ angular.module('dpay')
     $scope.selectedFriends.splice(index, 1);
   };
 
-  $scope.confirmar = function() {
+  $scope.confirmarCompartilhada = function() {
 
     for(var i in $scope.selectedFriends) {
       var friend = $scope.selectedFriends[i];
@@ -141,7 +141,8 @@ angular.module('dpay')
       list.$loaded().then(function(list) {
 
         // one payment for each friend
-        var paymentObj = $firebaseObject(ref.child('payments').child((new Date).getTime()));
+        var pid = (new Date).getTime();
+        var paymentObj = $firebaseObject(ref.child('payments').child(pid));
         paymentObj.$loaded().then(function(paymentObj) {
 
           var oid = 'email';
@@ -157,6 +158,8 @@ angular.module('dpay')
           paymentObj.transactionId = $scope.transaction.id;
           paymentObj.valorParcial = friend.valor;
           paymentObj.valorTotal = $scope.transaction.valorTotal;
+          paymentObj.id = pid;
+          paymentObj.forma = '';
           paymentObj.$save();
 
         });
@@ -166,7 +169,8 @@ angular.module('dpay')
     }
 
     // frist user payment
-    var paymentObj = $firebaseObject(ref.child('payments').child((new Date).getTime()));
+    var pid = (new Date).getTime();
+    var paymentObj = $firebaseObject(ref.child('payments').child(pid));
     paymentObj.$loaded().then(function(paymentObj) {
 
       paymentObj.data = (new Date).toISOString();
@@ -177,10 +181,40 @@ angular.module('dpay')
       paymentObj.transactionId = $scope.transaction.id;
       paymentObj.valorParcial = $scope.totalRestante();
       paymentObj.valorTotal = $scope.transaction.valorTotal;
-      paymentObj.$save();
+      paymentObj.id = pid;
+      paymentObj.forma = '';
+      paymentObj.$save().then(function() {
+
+        $location.path('/formaPagamento/'+paymentObj.id);
+
+      });
 
     });
 
+  }; // confirmarCompartilhada
+
+  $scope.confirmarIndividual = function() {
+    var pid = (new Date).getTime();
+    var paymentObj = $firebaseObject(ref.child('payments').child(pid));
+    paymentObj.$loaded().then(function(paymentObj) {
+
+      paymentObj.data = (new Date).toISOString();
+      paymentObj.destId = $scope.transaction.destId;
+      paymentObj.origId = $rootScope.user.uid;
+      paymentObj.status = false;
+      paymentObj.tipo = 'individual';
+      paymentObj.transactionId = $scope.transaction.id;
+      paymentObj.valorParcial = $scope.transaction.valorTotal;
+      paymentObj.valorTotal = $scope.transaction.valorTotal;
+      paymentObj.id = pid;
+      paymentObj.forma = '';
+      paymentObj.$save().then(function() {
+
+        $location.path('/formaPagamento/'+paymentObj.id);
+
+      });
+
+    });
   };
 
 });

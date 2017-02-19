@@ -1,19 +1,19 @@
 <div class="goals">
 	<div class="fit-goals">
 		<h3>Status Geral da Transação: </h3>
-		
-		<div class="col-sm-6 goal-left">
+
+		<div class="col-sm-6 goal-left" ng-repeat='payment in payments'>
 			<div class="goal-img">
 				<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-					<img class="img-circle border-effect" src="images/pic3.png" alt=" " />
+					<img class="img-circle border-effect" src="{{ safeChild(payment.user, 'photoURL') }}" alt=" " />
 				</div>
 			</div>
 			<div class="goal-info">
-				<h3 style="color: white; text-indent: 0;">Jorismar Barbosa</h3>
+				<h3 style="color: white; text-indent: 0;">{{ safeChild(payment.user, 'displayName') }}</h3>
 				<h4 style="margin-top:8px;">Valor:</h4>
-				<h3 style="color: white; text-indent: 0; margin-top:-15px;">R$ 10,00</h3>
+				<h3 style="color: white; text-indent: 0; margin-top:-15px;">R$ {{ payment.valorParcial }}</h3>
 				<h4 style="margin-top:8px;">Status</h4>
-				<h3 style="color: #d35400; text-indent: 0; margin-top:-15px;">Aguardando Pagamento...</h3>
+				<h3 style="color: {{ getSituacaoColor(payment); }}; text-indent: 0; margin-top:-15px;">{{ getSituacao(payment); }}</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -21,31 +21,14 @@
 		<div class="col-sm-6 goal-left">
 			<div class="goal-img">
 				<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-					<img class="img-circle border-effect" src="images/pic3.png" alt=" " />
+					<img class="img-circle border-effect" src="" alt=" " />
 				</div>
 			</div>
 			<div class="goal-info">
-				<h3 style="color: white; text-indent: 0;">Jorismar Barbosa</h3>
-				<h4 style="margin-top:8px;">Valor:</h4>
-				<h3 style="color: white; text-indent: 0; margin-top:-15px;">R$ 20,00</h3>
-				<h4 style="margin-top:8px;">Status</h4>
-				<h3 style="color: #2ecc71; text-indent: 0; margin-top:-15px;">Pagamento Efetuado <i class="fa fa-check"></i></h3>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-
-		<div class="col-sm-6 goal-left">
-			<div class="goal-img">
-				<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-					<img class="img-circle border-effect" src="images/pic3.png" alt=" " />
-				</div>
-			</div>
-			<div class="goal-info">
-				<h3 style="color: white; text-indent: 0;">Jorismar Barbosa</h3>
-				<h4 style="margin-top:8px;">Valor:</h4>
-				<h3 style="color: white; text-indent: 0; margin-top:-15px;">R$ 10,00</h3>
-				<h4 style="margin-top:8px;">Status</h4>
-				<h3 style="color: #2ecc71; text-indent: 0; margin-top:-15px;">Pagamento Efetuado <i class="fa fa-check"></i></h3>
+				<h3 style="color: white; text-indent: 0;">R$ {{ transaction.valorTotal }}</h3>
+				<h4 style="margin-top:8px;">Total</h4>
+				<h3 style="color: white; text-indent: 0; margin-top:-15px;">R$ {{ getRestante() }}</h3>
+				<h4 style="margin-top:8px;">Restante</h4>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -67,11 +50,11 @@
 					</div>
 					<div class="goal-info">
 						<h2 style="color: white; margin-top: 20px;">Confirmar</h2>
-					</div> 	
+					</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>
-			
+
 			<div class="clearfix"></div>
 	</div>
 </div>
