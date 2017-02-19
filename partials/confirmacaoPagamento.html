@@ -21,14 +21,14 @@
 		<div class="col-sm-6 goal-left">
 			<div class="goal-img">
 				<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-					<img class="img-circle border-effect" src="" alt=" " />
+					<i class="border-effect fa fa-usd fa-4x" style="width: 110px; height: 110px; color: white; border-radius: 110px; padding-top: 26px;"></i>
 				</div>
 			</div>
 			<div class="goal-info">
-				<h3 style="color: white; text-indent: 0;">R$ {{ transaction.valorTotal }}</h3>
-				<h4 style="margin-top:8px;">Total</h4>
-				<h3 style="color: white; text-indent: 0; margin-top:-15px;">R$ {{ getRestante() }}</h3>
-				<h4 style="margin-top:8px;">Restante</h4>
+				<h4 style="margin-top:8px;">Total da Transação:</h4>
+				<h3 style="color: white; text-indent: 0; margin-top:-14px;">R$ {{ transaction.valorTotal }}</h3>
+				<h4 style="margin-top:8px;">Restante para Pagar:</h4>
+				<h3 style="color: white; text-indent: 0; margin-top:-14px; color: #d35400; font-weight: bold;">R$ {{ getRestante() }}</h3>
 			</div>
 			<div class="clearfix"></div>
 		</div>
