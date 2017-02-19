@@ -1,7 +1,7 @@
 
 angular.module('dpay')
 
-.controller('DadosPagamentoCtrl', function($rootScope, $scope, $routeParams, $firebaseAuth, $firebaseObject, $log, $location, facebookService) {
+.controller('DadosPagamentoCtrl', function($rootScope, $scope, $routeParams, $firebaseAuth, $firebaseObject, $firebaseArray, $log, $location, facebookService) {
 
   $scope.transactionId = $routeParams.transactionId;
 
@@ -58,6 +58,35 @@ angular.module('dpay')
 
   $scope.busca = '';
 
+  $scope.totalRestante = function() {
+    var acumulado = 0;
+    for(var i in $scope.selectedFriends) {
+      acumulado += $scope.selectedFriends[i].valor;
+    }
+
+    if(!$scope.transaction || !$scope.transaction.valorTotal) {
+      return 0;
+    }
+
+    var restante = $scope.transaction.valorTotal - acumulado;
+
+    return restante;
+  };
+
+  $scope.valorSugerido = function() {
+    var acumulado = 0;
+    for(var i in $scope.selectedFriends) {
+      acumulado += $scope.selectedFriends[i].valor;
+    }
+
+    if(!$scope.transaction || !$scope.transaction.valorTotal) {
+      return 0;
+    }
+
+    var sugerido = $scope.transaction.valorTotal - acumulado;
+    return sugerido / 2;
+  };
+
   $scope.friendListFiltered = function() {
 
     var list = [];
@@ -71,7 +100,7 @@ angular.module('dpay')
       }
 
       for(var j in $scope.selectedFriends) {
-        if($scope.friendList[i].fib == $scope.selectedFriends[j].fib) {
+        if($scope.friendList[i].fid == $scope.selectedFriends[j].fid) {
           add = false;
           break;
         }
@@ -88,12 +117,70 @@ angular.module('dpay')
 
   $scope.selectFriend = function(friend) {
     if($scope.selectedFriends.length <= 10) {
+      if(!$scope.valor) {
+        friend.valor = $scope.valorSugerido();
+      } else {
+        friend.valor = parseInt($scope.valor);
+      }
+      $scope.valor = '';
       $scope.selectedFriends.push(friend);
     }
   };
 
   $scope.removeFriend = function(index) {
     $scope.selectedFriends.splice(index, 1);
+  };
+
+  $scope.confirmar = function() {
+
+    for(var i in $scope.selectedFriends) {
+      var friend = $scope.selectedFriends[i];
+
+      var userObj = ref.child('users').orderByChild('fid').equalTo(friend.fid);
+      var list = $firebaseArray(userObj);
+      list.$loaded().then(function(list) {
+
+        // one payment for each friend
+        var paymentObj = $firebaseObject(ref.child('payments').child((new Date).getTime()));
+        paymentObj.$loaded().then(function(paymentObj) {
+
+          var oid = 'email';
+          if(list.length>0) {
+            oid = list[0].uid;
+          }
+
+          paymentObj.data = (new Date).toISOString();
+          paymentObj.destId = $scope.transaction.destId;
+          paymentObj.origId = oid;
+          paymentObj.status = false;
+          paymentObj.tipo = 'compartilhada';
+          paymentObj.transactionId = $scope.transaction.id;
+          paymentObj.valorParcial = friend.valor;
+          paymentObj.valorTotal = $scope.transaction.valorTotal;
+          paymentObj.$save();
+
+        });
+
+      });
+
+    }
+
+    // frist user payment
+    var paymentObj = $firebaseObject(ref.child('payments').child((new Date).getTime()));
+    paymentObj.$loaded().then(function(paymentObj) {
+
+      paymentObj.data = (new Date).toISOString();
+      paymentObj.destId = $scope.transaction.destId;
+      paymentObj.origId = $rootScope.user.uid;
+      paymentObj.status = false;
+      paymentObj.tipo = 'compartilhada';
+      paymentObj.transactionId = $scope.transaction.id;
+      paymentObj.valorParcial = $scope.totalRestante();
+      paymentObj.valorTotal = $scope.transaction.valorTotal;
+      paymentObj.$save();
+
+    });
+
   };
 
 });

@@ -105,14 +105,19 @@
 							<i class="fa fa-close" style="color: white; position: absolute; top: 0; right: 3px;"></i>
 						</div>
 
-					<button type="button" class="btn btn-default" style="width: 100%; background: #402245; color: white; border: none; font-size: 20px; margin: 0 auto;">Confirmar</button>
+					<button type="button" class="btn btn-default" style="width: 100%; background: #402245; color: white; border: none; font-size: 20px; margin: 0 auto;" ng-click="confirmar();">Confirmar</button>
 
+					</div>
+
+					<div class="">
+						Total restante: {{ totalRestante(); }}
 					</div>
 
 			        <div class="modal-body" style="margin-top: 20px;">
 			          	<form class="navbar-form navbar-left" role="search">
 						  <div class="form-group">
 						    <input type="text" class="form-control" placeholder="Pesquisar" ng-model="busca">
+						    <input type="number" class="form-control" placeholder="Valor sugerido: R$ {{ valorSugerido(); }}" ng-model="valor">
 						  </div>
 						  <!-- <button type="submit" class="btn btn-default" style="width: 100%;">Buscar</button> -->
 						</form>
