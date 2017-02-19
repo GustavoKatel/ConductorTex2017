@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol, li{margin: 0; padding: 0;}
@@ -1642,4 +1643,20 @@ a.signup-btn:focus, a.signup-btn:hover{
 	.menu-notify1, .menu-notify2 ,.menu-notify{
     padding: 15px 0;
 }
+}
+
+#select:active {
+    background: #B377D9;
+}
+
+#select:visited {
+    background: #B377D9;
+}
+
+#select:hover {
+    background: #B377D9;
+}
+
+#select:link {
+    background: #B377D9;
 }
